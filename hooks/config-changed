@@ -1,0 +1,29 @@
+#!/bin/sh
+
+set -eux
+
+status-set maintenance "Configuring otc-client"
+
+username=`config-get username`
+password=`config-get password`
+project_name=`config-get project_name`
+user_domain_name=`config-get user_domain_name`
+
+if [ -n "${username}" ] ; then
+sed -i -e "s/username: .*/username: \'${username}'/" /home/ubuntu/.config/openstack/clouds.yml
+fi
+
+if [ -n "${password}" ] ; then
+sed -i -e "s/password: .*/password: \'${password}'/" /home/ubuntu/.config/openstack/clouds.yml
+fi
+
+if [ -n "${project_name}" ] ; then
+sed -i -e "s/project_name: .*/project_name: \'${project_name}'/" /home/ubuntu/.config/openstack/clouds.yml
+fi
+
+if [ -n "${user_domain_name}" ] ; then
+sed -i -e "s/user_domain_name: .*/user_domain_name: \'${user_domain_name}'/" /home/ubuntu/.config/openstack/clouds.yml
+fi
+
+status-set active "application up-to-date"
+

@@ -1,0 +1,11 @@
+name: otc-client
+summary: Juju Charm for maintenance Open Telekom Cloud (OTC) with different cli 
+maintainer: Frank Kloeker <f.kloeker@telekom.de>
+description: |
+   With this charm you will have a machine to control your OTC environment. We provide 4 solutions. Try your best
+tags:
+  - social
+subordinate: false
+provides:
+  command:
+    interface: shell

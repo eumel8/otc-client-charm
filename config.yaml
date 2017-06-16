@@ -1,0 +1,19 @@
+options:
+
+  username:
+    type: string
+    default: ""
+    description: "Username to connect OTC"
+  password:
+    type: string
+    default: ""
+    description: "Password to connect OTC"
+  project_name:
+    type: string
+    default: "eu-de"
+    description: "Projectname/Region"
+  user_domain_name:
+    type: string
+    default: ""
+    description: "User Domain Name"
+

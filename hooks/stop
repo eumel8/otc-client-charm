@@ -1,0 +1,4 @@
+#!/bin/bash
+set -e
+# systemctl stop apache2.service
+

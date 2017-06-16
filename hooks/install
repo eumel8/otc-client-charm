@@ -1,0 +1,45 @@
+#!/bin/bash
+set -e # If any command fails, stop execution of the hook with that error
+#
+
+add-apt-repository -y ppa:ansible/ansible
+apt-get update
+apt-get -y install curl git ansible python-openstackclient python-pip python-jmespath python-netaddr libs3-2 jq
+pip install python-otcclient
+
+
+# delete old install
+if [ -f  /home/ubuntu/.config/openstack ]; then
+  rm -rf  /home/ubuntu/.config/openstack
+fi
+
+# Grab ebbok-wunschliste from upstream.
+status-set maintenance "installing openstackclient"
+
+mkdir -p /home/ubuntu/.config/openstack
+touch /home/ubuntu/.config/openstack/clouds.yml
+chown -R ubuntu:ubuntu /home/ubuntu/.config
+chmod 600 /home/ubuntu/.config/openstack/clouds.yml
+
+# set apache conf
+status-set maintenance "Creating cloud configuration"
+cat <<EOF > /home/ubuntu/.config/openstack/clouds.yml
+clouds:
+    otc:
+        auth:
+            auth_url: https://iam.eu-de.otc.t-systems.com:443/v3
+            username: 
+            password: 
+            project_name: 
+            project_domain_name: Default
+            user_domain_name: 
+        region_name: eu-de
+EOF
+
+sed -i -e "s/username: .*/username: \'${username}'/" /home/ubuntu/.config/openstack/clouds.yml
+sed -i -e "s/password: .*/password: \'${password}'/" /home/ubuntu/.config/openstack/clouds.yml
+sed -i -e "s/user_domain_name: .*/user_domain_name: \'${user_domain_name}'/" /home/ubuntu/.config/openstack/clouds.yml
+sed -i -e "s/project_name: .*/project_name: \'${project_name}'/" /home/ubuntu/.config/openstack/clouds.yml
+
+status-set active "Installation finished"
+
