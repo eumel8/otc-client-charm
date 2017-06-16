@@ -8,6 +8,7 @@ Juju Charm for maintenance Open Telekom Cloud (OTC) with different cli
 
 # configuration
 
+```
   username:
     type: string
     default: ""
@@ -24,6 +25,7 @@ Juju Charm for maintenance Open Telekom Cloud (OTC) with different cli
     type: string
     default: ""
     description: "User Domain Name"
+```
 
 # deploy
 
