@@ -4,7 +4,7 @@ Juju Charm for maintenance Open Telekom Cloud (OTC) with different cli
 
 # description:
 
-   With this charm you will have a machine to control your OTC environment. We provide 4 solutions. Try your best
+   With this charm you will have a machine to control your OTC environment. We provide a first solution. Try your best
 
 # configuration
 
@@ -28,12 +28,14 @@ Juju Charm for maintenance Open Telekom Cloud (OTC) with different cli
 # deploy
 
 ```
-    juju ssh 0 'openstack --os-cloud otc server list'
+    git clone https://github.com/eumel8/otc-client-charm
     juju add-model otc-control
+    juju deploy ./otc-client-charm
 ```
 
 # usage
 
 ```
-    juju deploy ./charms/xenial/otc-client/ --series xenial
+    juju config otc-client username="xxxxx" password="xxxxx" user_domain_name="OTC-EU-DE-00000000001000019720"
+    juju ssh 0 'openstack --os-cloud otc server list'
 ```
