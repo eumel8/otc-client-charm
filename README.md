@@ -1,8 +1,8 @@
-# summary: 
+# summary
 
 Juju Charm for maintenance Open Telekom Cloud (OTC) with different cli 
 
-# description:
+# description
 
    With this charm you will have a machine to control your OTC environment. We provide a first solution. Try your best
 
